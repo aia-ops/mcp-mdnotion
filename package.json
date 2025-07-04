@@ -1,0 +1,33 @@
+{
+  "name": "mcp-mdnotion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "bin": {
+    "mcp-mdnotion": "./build/index.js"
+  },
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0",
+    "@tryfabric/martian": "^1.2.4",
+    "express": "^5.1.0",
+    "zod": "^3.25.73"
+  }
+}
