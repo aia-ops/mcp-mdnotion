@@ -12,6 +12,14 @@
   "author": "",
   "license": "ISC",
   "description": "MCP server to convert markdown to Notion JSON blocks",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikamboo/mcp-mdnotion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikamboo/mcp-mdnotion/issues"
+  },
+  "homepage": "https://github.com/mikamboo/mcp-mdnotion#readme",
   "bin": {
     "mcp-mdnotion": "./build/index.js"
   },
