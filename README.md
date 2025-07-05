@@ -8,17 +8,58 @@ It uses the `@tryfabric/martian` library to parse Markdown and convert it into a
 
 - Node.js (v16 or higher)
 
-## Installation
+## Installation & Usage
 
 ### Using npx (Recommended)
 
-You can run this MCP server directly using npx without installing it globally:
+The easiest way to use this MCP server is with npx, which allows you to run it without installing it globally:
 
 ```bash
 npx mcp-mdnotion
 ```
 
-### Local Installation
+This will automatically download and run the latest version of the server.
+
+#### Configuration for npx
+
+When using npx, configure your MCP client with the following settings:
+
+**For Claude Desktop (claude_desktop_config.json):**
+```json
+{
+  "mcpServers": {
+    "markdown-to-notion": {
+      "command": "npx",
+      "args": ["mcp-mdnotion"]
+    }
+  }
+}
+```
+
+### Global Installation
+
+Alternatively, you can install the package globally:
+
+```bash
+npm install -g mcp-mdnotion
+```
+
+Then configure your MCP client to use the global installation:
+
+```json
+{
+  "servers": {
+    "markdown-to-notion": {
+      "type": "stdio",
+      "command": "mcp-mdnotion"
+    }
+  }
+}
+```
+
+### Local Development
+
+For local development or if you want to modify the code:
 
 1. Clone the repository:
    ```bash
@@ -29,6 +70,23 @@ npx mcp-mdnotion
 2. Install the dependencies:
    ```bash
    npm install
+   ```
+
+## Quick Start
+
+1. **Start using immediately with npx:**
+   ```bash
+   npx mcp-mdnotion
+   ```
+
+2. **Configure your MCP client** (e.g., VS Code, Claude Desktop) to use the server with npx configuration shown above.
+
+3. **Test the conversion:**
+   Use the `markdown-to-notion` tool in your MCP client to convert markdown like:
+   ```markdown
+   # Hello World
+   
+   This is a **bold** paragraph with *italic* text.
    ```
 
 ## Build
@@ -93,34 +151,54 @@ The server will respond with:
 }
 ```
 
-## Integration with MCP Clients (e.g. Copilot, Claude Desktop)
+## Integration with MCP Clients
 
-To use this server with an MCP client like Copilote, you need to configure it in the client's settings.
+### VS Code with Copilot
 
-1.  Create a `.vscode` directory in the root of the project if it doesn't exist.
-2.  Create a file named `mcp.json` inside the `.vscode` directory.
-3.  Add the following configuration to the `mcp.json` file:
+1. Create or update `.vscode/mcp.json` in your project:
+   ```json
+   {
+     "servers": {
+       "markdown-to-notion": {
+         "type": "stdio",
+         "command": "npx",
+         "args": ["mcp-mdnotion"]
+       }
+     }
+   }
+   ```
 
-```json
-{
-  "servers": {
-    "markdown-to-notion": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["build/index.js"]
-    }
-  }
-}
-```
+2. Restart VS Code or reload the MCP servers.
 
-This configuration tells the MCP client how to start the server.
+3. Use the tool by asking Copilot to convert markdown to Notion format.
 
-- `markdown-to-notion`: A unique name for your server.
-- `type`: The communication protocol (in this case, `stdio`).
-- `command`: The command to execute to start the server (`node`).
-- `args`: The arguments to pass to the command (`build/index.js`).
+### Claude Desktop
 
-After configuring the client, you can use the `markdown-to-notion` tool in your conversations.
+1. Open your Claude Desktop configuration file:
+   - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+   - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - **Linux:** `~/.config/Claude/claude_desktop_config.json`
+
+2. Add the server configuration:
+   ```json
+   {
+     "mcpServers": {
+       "markdown-to-notion": {
+         "command": "npx",
+         "args": ["mcp-mdnotion"]
+       }
+     }
+   }
+   ```
+
+3. Restart Claude Desktop.
+
+### Other MCP Clients
+
+For other MCP clients, use the npx command configuration:
+- **Command:** `npx`
+- **Arguments:** `["mcp-mdnotion"]`
+- **Type:** `stdio`
 
 ## References
 
