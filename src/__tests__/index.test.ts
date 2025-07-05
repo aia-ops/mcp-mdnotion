@@ -1,4 +1,4 @@
-import { convertMarkdownToNotionBlocks } from '../../src/index.js';
+import { convertMarkdownToNotionBlocks } from '../index.js';
 import { markdownToBlocks } from '@tryfabric/martian';
 
 describe('Markdown to Notion Conversion', () => {

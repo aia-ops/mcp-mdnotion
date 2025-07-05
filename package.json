@@ -8,7 +8,12 @@
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },
-  "keywords": ["mcp", "markdown", "notion", "model-context-protocol"],
+  "keywords": [
+    "mcp",
+    "markdown",
+    "notion",
+    "model-context-protocol"
+  ],
   "author": "",
   "license": "ISC",
   "description": "MCP server to convert markdown to Notion JSON blocks",
@@ -27,7 +32,6 @@
     "build"
   ],
   "devDependencies": {
-    "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "jest": "^30.0.4",
     "ts-jest": "^29.4.0",
@@ -36,7 +40,6 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.15.0",
     "@tryfabric/martian": "^1.2.4",
-    "express": "^5.1.0",
     "zod": "^3.25.73"
   }
 }
