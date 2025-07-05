@@ -6,7 +6,7 @@ It uses the `@tryfabric/martian` library to parse Markdown and convert it into a
 
 ## Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v18 or higher)
 
 ## Installation & Usage
 
@@ -199,6 +199,53 @@ For other MCP clients, use the npx command configuration:
 - **Command:** `npx`
 - **Arguments:** `["mcp-mdnotion"]`
 - **Type:** `stdio`
+
+## Development & Release
+
+### Publishing to npm
+
+This project uses GitHub Actions to automatically publish to npm when a new tag is created.
+
+#### Setup
+
+1. **Create an npm account** and get an access token:
+   - Go to [npmjs.com](https://www.npmjs.com/) and create an account
+   - Go to Access Tokens in your npm profile
+   - Create a new "Automation" token
+
+2. **Add the token to GitHub Secrets**:
+   - Go to your GitHub repository → Settings → Secrets and variables → Actions
+   - Add a new secret named `NPM_TOKEN` with your npm token value
+
+#### Release Process
+
+Use the built-in npm scripts to create releases:
+
+```bash
+# For bug fixes (1.0.0 → 1.0.1)
+npm run release:patch
+
+# For new features (1.0.0 → 1.1.0)
+npm run release:minor
+
+# For breaking changes (1.0.0 → 2.0.0)
+npm run release:major
+```
+
+These commands will:
+1. Update the version in `package.json`
+2. Create a git tag
+3. Push the changes and tag to GitHub
+4. Trigger the GitHub Action to publish to npm
+
+### Manual Publishing
+
+If you prefer to publish manually:
+
+```bash
+npm run build
+npm publish
+```
 
 ## References
 
