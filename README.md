@@ -10,6 +10,16 @@ It uses the `@tryfabric/martian` library to parse Markdown and convert it into a
 
 ## Installation
 
+### Using npx (Recommended)
+
+You can run this MCP server directly using npx without installing it globally:
+
+```bash
+npx mcp-mdnotion
+```
+
+### Local Installation
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/mikamboo/mcp-mdnotion.git

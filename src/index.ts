@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -38,7 +40,7 @@ server.tool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error("Markdown to Notion MCP Server running on stdio");
+  console.log("Markdown to Notion MCP Server running on stdio");
 }
 
 if (process.env.NODE_ENV !== 'test') {

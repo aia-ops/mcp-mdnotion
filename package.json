@@ -1,16 +1,17 @@
 {
   "name": "mcp-mdnotion",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/index.js",
   "type": "module",
   "scripts": {
     "test": "jest",
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
+  "keywords": ["mcp", "markdown", "notion", "model-context-protocol"],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "MCP server to convert markdown to Notion JSON blocks",
   "bin": {
     "mcp-mdnotion": "./build/index.js"
   },
