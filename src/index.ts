@@ -1,46 +1,21 @@
 #!/usr/bin/env node
 
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
-import { markdownToBlocks } from '@tryfabric/martian';
+// Export the conversion function for backward compatibility
+export { convertMarkdownToNotionBlocks } from "./shared/mcp-factory.js";
 
-export function convertMarkdownToNotionBlocks(markdown: string) {
-  return markdownToBlocks(markdown);
-}
-
-const server = new McpServer({
-  name: "markdown-to-notion",
-  version: "1.0.0",
-  capabilities: {
-    resources: {},
-    tools: {},
-  },
-});
-
-server.tool(
-  "markdown-to-notion",
-  "Convert markdown content to notion json page content",
-  {
-    markdown: z.string().describe("The markdown content to convert."),
-  },
-  async ({ markdown }) => {
-    const blocks = convertMarkdownToNotionBlocks(markdown);
-    return {
-      content: [
-        {
-          type: "text",
-          text: JSON.stringify(blocks, null, 2),
-        },
-      ],
-    };
-  }
-);
+// Determine server mode from environment variable
+const SERVER_MODE = process.env.SERVER_MODE || 'stdio';
 
 async function main() {
-  const transport = new StdioServerTransport();
-  await server.connect(transport);
-  console.log("Markdown to Notion MCP Server running on stdio");
+  if (SERVER_MODE === 'http') {
+    // Run HTTP server
+    console.log('🌐 Starting MCP Server in HTTP mode...');
+    await import('./server-http.js');
+  } else {
+    // Run STDIO server (default)
+    console.log('📡 Starting MCP Server in STDIO mode...');
+    await import('./server-stdio.js');
+  }
 }
 
 if (process.env.NODE_ENV !== 'test') {
@@ -49,5 +24,3 @@ if (process.env.NODE_ENV !== 'test') {
     process.exit(1);
   });
 }
-
-export default server;

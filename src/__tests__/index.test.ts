@@ -1,4 +1,4 @@
-import { convertMarkdownToNotionBlocks } from '../index.js';
+import { convertMarkdownToNotionBlocks, createMcpServer } from '../shared/mcp-factory.js';
 import { markdownToBlocks } from '@tryfabric/martian';
 
 describe('Markdown to Notion Conversion', () => {
@@ -23,5 +23,9 @@ describe('Markdown to Notion Conversion', () => {
     const expectedBlocks = markdownToBlocks(markdown);
     const result = convertMarkdownToNotionBlocks(markdown);
     expect(result).toEqual(expectedBlocks);
+  });
+
+  it('should create server without error', () => {
+    const server = createMcpServer('test-1.0.0');
   });
 });
